@@ -23,6 +23,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/articles', articleRoutes);
 app.use('/api/upload', uploadRoutes);
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the Knowledge Base API' });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
