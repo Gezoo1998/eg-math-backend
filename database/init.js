@@ -1,7 +1,10 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const dbPath = path.join(__dirname, 'knowledge_base.db');
+// Use a configurable path for the database.
+// For local development, it defaults to the project's database directory.
+// On Railway, this should point to a mounted volume, e.g., /data/knowledge_base.db
+const dbPath = process.env.DATABASE_PATH || path.join(__dirname, 'knowledge_base.db');
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
