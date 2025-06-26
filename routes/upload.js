@@ -8,8 +8,11 @@ const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
 
+// Use a configurable path for uploads.
+// On Railway, this should point to a directory on a mounted volume, e.g., /data/uploads
+const uploadsDir = process.env.UPLOADS_DIR || path.join(__dirname, '../uploads');
+
 // Ensure uploads directory exists
-const uploadsDir = path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }

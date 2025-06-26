@@ -62,6 +62,13 @@ async function seedDatabase() {
     );
   } catch (error) {
     console.error('Error seeding database:', error);
+  } finally {
+    db.close((err) => {
+      if (err) {
+        console.error(err.message);
+      }
+      console.log('Closed the database connection.');
+    });
   }
 }
 
